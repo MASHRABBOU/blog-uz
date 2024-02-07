@@ -11,10 +11,12 @@ export const News = () => {
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [page, setPage] = useState();
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_APP_BASE_URL + `/posts?page=${pageCount}&limit=9`)
+    fetch(
+      import.meta.env.VITE_APP_BASE_URL + `/posts?page=${pageCount}&limit=9`
+    )
       .then((res) => res.json())
       .then((data) => {
         setPosts(data.results);
@@ -47,28 +49,36 @@ export const News = () => {
           </div>
           <ul className="news-list">
             {posts.length ? (
-              posts.filter((found) => {
-                return search.toLowerCase() === "" ? found : found.title.toLowerCase().includes(search)
-              }).map((item, index) => (
-                <li className="news-item" key={index}>
-                  <img src={Cardimg} alt="img" className="news-img" />
-                  <div className="card-box">
-                    <h4 className="card-title">{item.title.slice(0,40)}...</h4>
-                    <p className="card-text">{item.text.slice(0,100)}...</p>
-                    <div className="card-bottom">
-                      <p className="card-time">{dateFormat(item.createdAt)}</p>
-                      <NavLink to={`/single/${item.id}`}>
-                        <button className="card-btn">
-                          ko'proq
-                          <FaArrowCircleRight className="card-arrow" />
-                        </button>
-                      </NavLink>
+              posts
+                .filter((found) => {
+                  return search.toLowerCase() === ""
+                    ? found
+                    : found.title.toLowerCase().includes(search);
+                })
+                .map((item, index) => (
+                  <li className="news-item" key={index}>
+                    <img src={Cardimg} alt="img" className="news-img" />
+                    <div className="card-box">
+                      <h4 className="card-title">
+                        {item.title.slice(0, 40)}...
+                      </h4>
+                      <p className="card-text">{item.text.slice(0, 100)}...</p>
+                      <div className="card-bottom">
+                        <p className="card-time">
+                          {dateFormat(item.createdAt)}
+                        </p>
+                        <NavLink to={`/single/${item.id}`}>
+                          <button className="card-btn">
+                            ko'proq
+                            <FaArrowCircleRight className="card-arrow" />
+                          </button>
+                        </NavLink>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))
+                  </li>
+                ))
             ) : (
-              <h1>Loading...</h1>
+              <h1>Loading....</h1>
             )}
           </ul>
           <ul className="card-bottom-list">
