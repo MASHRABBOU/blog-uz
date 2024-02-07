@@ -1,0 +1,19 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20%;
+}
+.not-found-p {
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--bs-red);
+}
+.not-found-title {
+  font-size: 160px;
+  color: var(--bs-red);
+  font-family: "Sixtyfour", sans-serif;
+  transition: all 3s;
+}
+
