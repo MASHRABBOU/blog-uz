@@ -11,6 +11,7 @@ export const News = () => {
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [page, setPage] = useState();
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     fetch(import.meta.env.VITE_APP_BASE_URL + `/posts?page=${pageCount}&limit=9`)
@@ -40,11 +41,15 @@ export const News = () => {
               type="text"
               className="news-box-input"
               placeholder="qidirish..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <ul className="news-list">
             {posts.length ? (
-              posts.map((item, index) => (
+              posts.filter((found) => {
+                return search.toLowerCase() === "" ? found : found.title.toLowerCase().includes(search)
+              }).map((item, index) => (
                 <li className="news-item" key={index}>
                   <img src={Cardimg} alt="img" className="news-img" />
                   <div className="card-box">
