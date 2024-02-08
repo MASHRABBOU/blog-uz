@@ -17,7 +17,6 @@ export const AdminHome = () => {
   const [img, setImg] = useState(null);
   const [slideList, setSlideList] = useState([]);
   const [post, setPost] = useState([]);
-  const [pageCount, setPageCount] = useState(1);
 
   const handleImg = (e) => {
     setImg(e.target.files[0]);
@@ -89,7 +88,7 @@ export const AdminHome = () => {
 
   useEffect(() => {
     fetch(
-      import.meta.env.VITE_APP_BASE_URL + `/posts?page=${pageCount}&limit=1000`,
+      import.meta.env.VITE_APP_BASE_URL + `/posts?page=1&limit=1000`,
       {
         method: "GET",
         headers: {
@@ -100,10 +99,9 @@ export const AdminHome = () => {
       .then((res) => res.json())
       .then((data) => {
         setPost(data.results);
-        setPage(data.next ? false : true);
       })
       .catch((err) => console.log(err));
-  }, [pageCount]);
+  }, []);
 
   const postDelete = (e) => {
     fetch(import.meta.env.VITE_APP_BASE_URL + "/delete_post/" + e, {
