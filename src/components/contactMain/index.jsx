@@ -1,8 +1,39 @@
 import "./contact.css";
 import { RiMessage3Fill } from "react-icons/ri";
 import { IoCall } from "react-icons/io5";
+import { useState } from "react";
 
 export const ContactMain = () => {
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [subject, setSubject] = useState("")
+  const [message, setMessage] = useState("")
+
+  const addData = (e) => {
+    e.preventDefault()
+    fetch(import.meta.env.VITE_APP_BASE_URL + "/create_contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        subject,
+        message
+      })
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      alert(data.message)
+      if(data.message === "created contact"){
+        location.reload()
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
   return (
     <section className="contact-main">
       <div className="container">
@@ -45,6 +76,8 @@ export const ContactMain = () => {
                   placeholder="Sizning ismimgiz..."
                   autoComplete="on"
                   required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </fieldset>
               <fieldset>
@@ -56,6 +89,8 @@ export const ContactMain = () => {
                   placeholder="Sizning emailingiz..."
                   autoComplete="on"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </fieldset>
               <fieldset>
@@ -67,6 +102,8 @@ export const ContactMain = () => {
                   placeholder="Mavzu matni..."
                   autoComplete="on"
                   required
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                 />
               </fieldset>
               <fieldset>
@@ -75,9 +112,11 @@ export const ContactMain = () => {
                   placeholder="Sizning xabaringiz..."
                   cols="30"
                   rows="10"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </fieldset>
-              <button className="contact-btn">Xabar Yuborish</button>
+              <button className="contact-btn" onClick={addData}>Xabar Yuborish</button>
             </form>
           </div>
         </div>
