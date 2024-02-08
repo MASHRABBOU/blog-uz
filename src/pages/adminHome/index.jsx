@@ -105,6 +105,24 @@ export const AdminHome = () => {
       .catch((err) => console.log(err));
   }, [pageCount]);
 
+  const postDelete = (e) => {
+    fetch(import.meta.env.VITE_APP_BASE_URL + "/delete_post/" + e, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msg === "deleted post!") {
+          location.reload();
+        }
+        alert(data.msg);
+      })
+      .catch((error) => console.log(error));
+  };
+
+
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -225,7 +243,7 @@ export const AdminHome = () => {
                       {item.text}
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
-                      <RiDeleteBin6Fill className="admin-home-delete" />
+                      <RiDeleteBin6Fill className="admin-home-delete" onClick={() => postDelete(item.id)}/>
                     </TableCell>
                   </TableRow>
                 ))}
