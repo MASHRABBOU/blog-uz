@@ -53,7 +53,7 @@ export const News = () => {
                 .filter((found) => {
                   return search.toLowerCase() === ""
                     ? found
-                    : found.title.toLowerCase().includes(search);
+                    : found.title.includes(search);
                 })
                 .map((item, index) => (
                   <li className="news-item" key={index}>

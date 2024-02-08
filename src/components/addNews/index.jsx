@@ -7,7 +7,6 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
 export const AdminNews = () => {
-  const [news, setNews] = React.useState([]);
   const [img, setImg] = React.useState(null);
   const [title, setTitle] = React.useState("");
   const [text, setText] = React.useState("");
@@ -43,7 +42,7 @@ export const AdminNews = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              if (data?.message === "created slide") {
+              if (data?.message === "created post") {
                 location.reload();
               }
               alert(data?.message);
