@@ -20,7 +20,7 @@ export const Single = () => {
     <Layouts>
       <div className="container">
         <div className="single-inner">
-          <img src={Img} alt="img" className="single-img" />
+          <img src={info.img} alt="img" className="single-img" />
           <h2 className="single-title">{info.title}</h2>
           <p className="single-text">{info.text}</p>
           <div className="single-bottom">

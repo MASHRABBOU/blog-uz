@@ -57,7 +57,7 @@ export const News = () => {
                 })
                 .map((item, index) => (
                   <li className="news-item" key={index}>
-                    <img src={Cardimg} alt="img" className="news-img" />
+                    <img src={item.img} alt="img" className="news-img" />
                     <div className="card-box">
                       <h4 className="card-title">
                         {item.title ? item.title.slice(0, 100) : item.title}...
