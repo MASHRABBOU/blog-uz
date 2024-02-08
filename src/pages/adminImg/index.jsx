@@ -139,6 +139,7 @@ export const AdminImg = () => {
                   <TableRow
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     key={idx}
+                    className="admin-contact-row"
                   >
                     <TableCell className="admin-img-body" align="right">
                       <img src={item.img} alt="img" className="admin-img-photo" width={50} height={50} />

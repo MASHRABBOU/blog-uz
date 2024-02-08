@@ -27,9 +27,15 @@
   cursor: pointer;
   font-size: 18px;
 }
+.admin-contact-row:nth-child(odd) {
+  background-color: #e9ecef;
+}
 
 .admin-img-add {
   background-color: var(--bs-cyan) !important;
+}
+.admin-img-photo {
+  border-radius: 50%;
 }
 
 .admin-img-title-bottom {

@@ -16,6 +16,15 @@
   display: flex;
   align-items: center;
 }
+.slide-img {
+  border-radius: 50%;
+}
+.admin-contact-row:nth-child(odd) {
+  background-color: #e9ecef !important;
+}
+.admin-home-img {
+  border-radius: 50%;
+}
 .admin-home-add-btn {
   padding: 10px 30px;
   margin-left: 30px;

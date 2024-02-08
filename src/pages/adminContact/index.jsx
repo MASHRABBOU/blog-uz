@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,6 +10,36 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import "./adminContact.css";
 
 export const AdminContact = () => {
+  const [contact, setContact] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      import.meta.env.VITE_APP_BASE_URL + `/contact`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setContact(data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  const handleDelete = (e) => {
+    fetch(import.meta.env.VITE_APP_BASE_URL + "/delete_contact/" + e, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msg === "deleted contact!") {
+          location.reload();
+        }
+        alert(data.msg);
+      })
+      .catch((error) => console.log(error));
+  }
+
   return (
     <div className="admin-contact">
       <div className="container">
@@ -39,29 +69,36 @@ export const AdminContact = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow
-                  sx={{ "&:first-child td, &:first-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    className="admin-contact-body"
-                    component="th"
-                    scope="row"
-                  >
-                    name
-                  </TableCell>
-                  <TableCell className="admin-contact-body" align="right">
-                    calor
-                  </TableCell>
-                  <TableCell className="admin-contact-body" align="right">
-                    fat
-                  </TableCell>
-                  <TableCell className="admin-contact-body" align="right">
-                    cabs
-                  </TableCell>
-                  <TableCell className="admin-contact-body" align="right">
-                    <RiDeleteBin6Fill className="admin-contact-delete" />
-                  </TableCell>
-                </TableRow>
+                {contact.length &&
+                  contact.map((item, idx) => (
+                    <TableRow
+                    className="admin-contact-row"
+                      sx={{
+                        "&:first-child td, &:first-child th": { border: 0 },
+                      }}
+                      key={idx}
+                    >
+                      <TableCell
+                        className="admin-contact-body"
+                        component="th"
+                        scope="row"
+                      >
+                        {item.name}
+                      </TableCell>
+                      <TableCell className="admin-contact-body" align="right">
+                        {item.email}
+                      </TableCell>
+                      <TableCell className="admin-contact-body" align="right">
+                        {item.subject}
+                      </TableCell>
+                      <TableCell className="admin-contact-body" align="right">
+                        {item.message}
+                      </TableCell>
+                      <TableCell className="admin-contact-body" align="right">
+                        <RiDeleteBin6Fill className="admin-contact-delete" onClick={() => handleDelete(item.id)}/>
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>

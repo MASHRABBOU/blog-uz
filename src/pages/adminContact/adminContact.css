@@ -23,6 +23,9 @@
   padding-top: 20px !important;
   padding-bottom: 20px !important;
 }
+.admin-contact-row:nth-child(odd) {
+  background-color: #e9ecef;
+}
 .admin-contact-delete {
   font-size: 25px;
 }

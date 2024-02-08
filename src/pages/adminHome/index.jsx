@@ -87,15 +87,12 @@ export const AdminHome = () => {
   };
 
   useEffect(() => {
-    fetch(
-      import.meta.env.VITE_APP_BASE_URL + `/posts?page=1&limit=1000`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(import.meta.env.VITE_APP_BASE_URL + `/posts?page=1&limit=1000`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setPost(data.results);
@@ -119,7 +116,6 @@ export const AdminHome = () => {
       })
       .catch((error) => console.log(error));
   };
-
 
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -173,6 +169,7 @@ export const AdminHome = () => {
                   <TableRow
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     key={item.id}
+                    className="admin-contact-row"
                   >
                     <TableCell className="admin-home-body" align="right">
                       <img
@@ -220,6 +217,7 @@ export const AdminHome = () => {
                   <TableRow
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     key={idx}
+                    className="admin-contact-row"
                   >
                     <TableCell
                       className="admin-home-body"
@@ -241,7 +239,10 @@ export const AdminHome = () => {
                       {item.text}
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
-                      <RiDeleteBin6Fill className="admin-home-delete" onClick={() => postDelete(item.id)}/>
+                      <RiDeleteBin6Fill
+                        className="admin-home-delete"
+                        onClick={() => postDelete(item.id)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
