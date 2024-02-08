@@ -16,6 +16,8 @@ import { AdminNews } from "../../components/addNews";
 export const AdminHome = () => {
   const [img, setImg] = useState(null);
   const [slideList, setSlideList] = useState([]);
+  const [post, setPost] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
 
   const handleImg = (e) => {
     setImg(e.target.files[0]);
@@ -77,13 +79,31 @@ export const AdminHome = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.msg === "deleted slide!"){
-          location.reload()
+        if (data.msg === "deleted slide!") {
+          location.reload();
         }
-        alert(data.msg)
+        alert(data.msg);
       })
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    fetch(
+      import.meta.env.VITE_APP_BASE_URL + `/posts?page=${pageCount}&limit=1000`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setPost(data.results);
+        setPage(data.next ? false : true);
+      })
+      .catch((err) => console.log(err));
+  }, [pageCount]);
 
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -164,7 +184,6 @@ export const AdminHome = () => {
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell className="admin-home-header">Id</TableCell>
                 <TableCell className="admin-home-header" align="right">
                   Rasm
                 </TableCell>
@@ -180,29 +199,36 @@ export const AdminHome = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell
-                  className="admin-home-body"
-                  component="th"
-                  scope="row"
-                >
-                  name
-                </TableCell>
-                <TableCell className="admin-home-body" align="right">
-                  cabs
-                </TableCell>
-                <TableCell className="admin-home-body" align="right">
-                  cabs
-                </TableCell>
-                <TableCell className="admin-home-body" align="right">
-                  cabs
-                </TableCell>
-                <TableCell className="admin-home-body" align="right">
-                  <RiDeleteBin6Fill className="admin-home-delete" />
-                </TableCell>
-              </TableRow>
+              {post.length &&
+                post.map((item, idx) => (
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    key={idx}
+                  >
+                    <TableCell
+                      className="admin-home-body"
+                      component="th"
+                      scope="row"
+                    >
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="admin-home-img"
+                        width={50}
+                        height={50}
+                      />
+                    </TableCell>
+                    <TableCell className="admin-home-body" align="right">
+                      {item.title}
+                    </TableCell>
+                    <TableCell className="admin-home-body" align="right">
+                      {item.text}
+                    </TableCell>
+                    <TableCell className="admin-home-body" align="right">
+                      <RiDeleteBin6Fill className="admin-home-delete" />
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
