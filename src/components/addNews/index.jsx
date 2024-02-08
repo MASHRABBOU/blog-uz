@@ -7,6 +7,52 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
 export const AdminNews = () => {
+  const [news, setNews] = React.useState([]);
+  const [img, setImg] = React.useState(null);
+  const [title, setTitle] = React.useState("");
+  const [text, setText] = React.useState("");
+
+  const handleImg = (e) => {
+    setImg(e.target.files[0]);
+  };
+
+  const formData = new FormData();
+  formData.append("file", img);
+  formData.append("upload_preset", "blog-preset");
+
+  const handleData = async (e) => {
+    e.preventDefault();
+
+    fetch("https://api.cloudinary.com/v1_1/dxealoh68/image/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        {
+          fetch(import.meta.env.VITE_APP_BASE_URL + "/create_post", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              img: data.url,
+              title: title,
+              text: text
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data?.message === "created slide") {
+                location.reload();
+              }
+              alert(data?.message);
+            })
+            .catch((error) => console.log(error));
+        }
+      });
+  };
+
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -37,12 +83,15 @@ export const AdminNews = () => {
                   autoComplete="current-lined"
                   variant="standard"
                   className="admin-news-input"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
                 <Button
                   component="label"
                   variant="contained"
                   startIcon={<MdCloudUpload />}
                   className="admin-news-input-btn"
+                  onChange={(e) => handleImg(e)}
                 >
                   Upload file
                   <VisuallyHiddenInput type="file" />
@@ -53,8 +102,10 @@ export const AdminNews = () => {
                 cols="30"
                 rows="10"
                 placeholder="matn..."
+                value={text}
+                onChange={(e) => setText(e.target.value)}
               ></textarea>
-              <button className="admin-news-add-btn">qo'shish</button>
+              <button className="admin-news-add-btn" onClick={handleData}>qo'shish</button>
             </Box>
           </div>
         </div>

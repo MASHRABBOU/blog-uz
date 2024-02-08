@@ -60,9 +60,9 @@ export const News = () => {
                     <img src={Cardimg} alt="img" className="news-img" />
                     <div className="card-box">
                       <h4 className="card-title">
-                        {item.title.slice(0, 40)}...
+                        {item.title ? item.title.slice(0, 100) : item.title}...
                       </h4>
-                      <p className="card-text">{item.text.slice(0, 100)}...</p>
+                      <p className="card-text">{item.text ? item.text.slice(0, 100) : item.text}...</p>
                       <div className="card-bottom">
                         <p className="card-time">
                           {dateFormat(item.createdAt)}
