@@ -21,7 +21,12 @@
   font-size: 16px;
   font-weight: 600;
   color: var(--bs-gray);
+}
+.single-bottom {
   margin-top: 100px;
+  background-color: #e9ecef;
+  padding: 20px;
+
 }
 
 @media (max-width: 870px) {
@@ -45,6 +50,8 @@
   }
   .single-date {
     font-size: 16px;
+  }
+  .single-bottom {
     margin-top: 80px;
   }
 }
@@ -69,6 +76,6 @@
   }
   .single-date {
     font-size: 16px;
-    margin-top: 80px;
+
   }
 }
