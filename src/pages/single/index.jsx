@@ -1,6 +1,5 @@
 import "./single.css";
 import { Layouts } from "../../components/layouts";
-import Img from "../../assets/img/about-bg.png";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";

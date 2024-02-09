@@ -15,6 +15,7 @@ export const ContactMain = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        token: sessionStorage.getItem("admin")
       },
       body: JSON.stringify({
         name,

@@ -27,12 +27,11 @@ export const Login = () => {
           alert(data.msg);
           if(data.token) {
             localStorage.setItem("token", data.token)
+            navigate("/")
           }
           if(data.verifyAdmin !== null){
             sessionStorage.setItem("admin", data.verifyAdmin)
-          }
-          if(data.token || data.verifyAdmin){
-            navigate("/")
+            navigate("/admin-page-scret-control/admin-home")
           }
         });
     });

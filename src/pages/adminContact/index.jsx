@@ -28,6 +28,7 @@ export const AdminContact = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        token: sessionStorage.getItem("admin")
       },
     })
       .then((res) => res.json())

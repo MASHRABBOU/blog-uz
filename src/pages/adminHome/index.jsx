@@ -40,6 +40,7 @@ export const AdminHome = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              token: sessionStorage.getItem("admin")
             },
             body: JSON.stringify({
               img: data.url,
@@ -74,6 +75,7 @@ export const AdminHome = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        token: sessionStorage.getItem("admin")
       },
     })
       .then((res) => res.json())
@@ -105,6 +107,7 @@ export const AdminHome = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        token: sessionStorage.getItem("admin")
       },
     })
       .then((res) => res.json())

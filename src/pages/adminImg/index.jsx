@@ -39,6 +39,7 @@ export const AdminImg = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              token: sessionStorage.getItem("admin")
             },
             body: JSON.stringify({
               img: data.url,
@@ -75,6 +76,7 @@ export const AdminImg = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        token: sessionStorage.getItem("admin")
       },
     })
       .then((res) => res.json())
