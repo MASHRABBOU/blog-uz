@@ -13,11 +13,49 @@ import Button from "@mui/material/Button";
 import { MdCloudUpload } from "react-icons/md";
 import { AdminNews } from "../../components/addNews";
 import { FaEdit } from "react-icons/fa";
+import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
+import { FaWindowClose } from "react-icons/fa";
 
 export const AdminHome = () => {
   const [img, setImg] = useState(null);
   const [slideList, setSlideList] = useState([]);
   const [post, setPost] = useState([]);
+
+  ///////////////// modal
+  const [anchor, setAnchor] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchor(anchor ? null : event.currentTarget);
+  };
+
+  const open = anchor;
+  const id = open ? "simple-popper" : undefined;
+
+  const grey = {
+    200: "#DAE2ED",
+    700: "#434D5B",
+    900: "#1C2025",
+  };
+
+  const PopupBody = styled("div")(
+    ({ theme }) => `
+    width: 50vw;
+    padding: 22px 36px;
+    margin: 8px;
+    border-radius: 8px;
+    border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+    background-color: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+    box-shadow: ${
+      theme.palette.mode === "dark"
+        ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+        : `0px 4px 8px rgb(0 0 0 / 0.1)`
+    };
+    font-size: 0.875rem;
+    z-index: 1;
+  `
+  );
+
+  /////////////////////// modal
 
   const handleImg = (e) => {
     setImg(e.target.files[0]);
@@ -188,7 +226,32 @@ export const AdminHome = () => {
                       />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
-                      <FaEdit className="admin-home-delete" />
+                      <BasePopup id={id} open={open} anchor={anchor} className="admin-home-add-box">
+                        <PopupBody>
+                          <Button
+                            component="label"
+                            variant="contained"
+                            className="admin-home-add"
+                            startIcon={<MdCloudUpload />}
+                          >
+                            Upload file
+                            <VisuallyHiddenInput type="file" />
+                          </Button>
+                          <button className="admin-home-add-btn">
+                            qo'shish
+                          </button>
+                          <FaWindowClose
+                            className="admin-home-add-btn-close"
+                            aria-describedby={id}
+                            onClick={handleClick}
+                          />
+                        </PopupBody>
+                      </BasePopup>
+                      <FaEdit
+                        className="admin-home-delete"
+                        aria-describedby={id}
+                        onClick={handleClick}
+                      />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
                       <RiDeleteBin6Fill
