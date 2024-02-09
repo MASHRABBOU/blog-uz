@@ -1,5 +1,6 @@
 import { Layouts } from "../../components/layouts";
 import AccordionComp from "../../components/questions";
+import { useState, useEffect } from "react";
 
 export const FAQ = () => {
   return (
