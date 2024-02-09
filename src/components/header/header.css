@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   z-index: 2;
-  background-color: #fff;
+  background-color: var(--bs-white);
 }
 .header-inner {
   display: flex;
@@ -47,7 +47,7 @@
 }
 .header-btn {
   background-color: #1e1e1e;
-  color: #fff;
+  color: var(--bs-white);
   font-size: 14px;
   font-weight: 400;
   text-transform: none;
@@ -61,7 +61,7 @@
   border: 2px solid #1e1e1e;
 }
 .header-btn:hover {
-  background-color: #ffffff;
+  background-color: var(--bs-white);
   color: #1e1e1e;
 }
 .hamburger-header{
@@ -82,7 +82,7 @@
     width: 50%;
     height: 100vh;
     padding-top: 20px;
-    background-color: #fff;
+    background-color: var(--bs-white);
     box-shadow: 2px 0px 5px 10px rgba(0, 0, 0, 0.1);
     padding-right: 20px;
     z-index: 3;
@@ -160,7 +160,7 @@
     width: 50%;
     height: 100vh;
     padding-top: 20px;
-    background-color: #fff;
+    background-color: var(--bs-white);
     box-shadow: 2px 0px 5px 10px rgba(0, 0, 0, 0.1);
     padding-right: 20px;
     z-index: 3;

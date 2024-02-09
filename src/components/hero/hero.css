@@ -17,7 +17,7 @@
   height: 90vh;
 }
 .hero-btn {
-  background-color: #fff;
+  background-color: var(--bs-white);
   color: #1e1e1e;
   font-size: 16px;
   font-weight: 500;
@@ -37,7 +37,7 @@
   font-size: 62px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--bs-white);
     line-height: 72px;
     width: 100%;
     margin-bottom: 0px;

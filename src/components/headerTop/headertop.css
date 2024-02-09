@@ -1,5 +1,5 @@
 .header-top {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--bs-gray-100);
   margin-top: 100px;
 }
 .header-top-inner {
@@ -50,7 +50,7 @@
   margin-left: 0px;
 }
 .header-top-item-link {
-  color: #ffffff;
+  color: var(--bs-white);
   background-color: #000000;
   padding: 10px;
   border-radius: 50%;
@@ -101,7 +101,7 @@
     left: 0px;
     top: 0px;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: var(--bs-white);
     box-shadow: 8px 0px 10px 1px rgba(0, 0, 0, 0.1);
     display: block;
     padding-left: 20px;
@@ -222,7 +222,7 @@
     left: 0px;
     top: 0px;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: var(--bs-white);
     box-shadow: 8px 0px 10px 1px rgba(0, 0, 0, 0.1);
     display: block;
     padding-left: 20px;

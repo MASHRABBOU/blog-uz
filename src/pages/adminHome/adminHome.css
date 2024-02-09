@@ -20,7 +20,7 @@
   border-radius: 50%;
 }
 .admin-contact-row:nth-child(odd) {
-  background-color: #e9ecef !important;
+  background-color: var(--bs-gray-100) !important;
 }
 .admin-home-img {
   border-radius: 50%;
@@ -30,7 +30,7 @@
   margin-left: 30px;
   border-radius: 10px;
   background-color: var(--bs-cyan);
-  color: var(--bs-light);
+  color: var(--bs-white);
   border: var(--bs-cyan);
   font-weight: 400;
   cursor: pointer;

@@ -88,7 +88,7 @@
   margin-left: 0px;
 }
 .admin-navbar-item-link {
-  color: var(--bs-light);
+  color: var(--bs-white);
   font-size: 18px;
   padding-bottom: 5px;
   font-weight: 600;
@@ -99,7 +99,7 @@
   border-bottom: 2px solid var(--bs-gray-200);
 }
 .admin-navbar-btn {
-  color: var(--bs-light);
+  color: var(--bs-white);
   font-size: 18px;
   padding: 10px 25px;
   border-radius: 16px;
@@ -158,7 +158,7 @@
     padding: 30px 0;
   }
   .addmin-navbar-nav {
-    background-color: var(--bs-light);
+    background-color: var(--bs-white);
     color: var(--bs-cyan);
     position: fixed;
     top: 0;
@@ -167,7 +167,7 @@
     width: 50%;
   }
   .addmin-navbar-nav-extra {
-    background-color: var(--bs-light);
+    background-color: var(--bs-white);
     color: var(--bs-cyan);
     position: fixed;
     top: 0;

@@ -9,7 +9,7 @@
   text-align: center;
 }
 .contact-hero-btn {
-  background-color: #fff;
+  background-color: var(--bs-white);
   color: #1e1e1e;
   font-size: 14px;
   font-weight: 700;
@@ -24,7 +24,7 @@
   font-size: 48px;
   font-weight: 900;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--bs-white);
   text-align: center;
   margin: 0 auto;
 }

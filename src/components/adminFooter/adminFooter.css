@@ -9,7 +9,7 @@
   font-size: 22px;
   text-align: center;
   font-weight: 600;
-  color: var(--bs-light);
+  color: var(--bs-white);
 }
 
 @media (max-width: 800px) {
@@ -20,6 +20,6 @@
     font-size: 18px;
     text-align: center;
     font-weight: 400;
-    color: var(--bs-light);
+    color: var(--bs-white);
   }
 }

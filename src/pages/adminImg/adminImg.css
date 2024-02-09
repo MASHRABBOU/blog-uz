@@ -21,14 +21,14 @@
   margin-left: 30px;
   border-radius: 10px;
   background-color: var(--bs-cyan);
-  color: var(--bs-light);
+  color: var(--bs-white);
   border: var(--bs-cyan);
   font-weight: 400;
   cursor: pointer;
   font-size: 18px;
 }
 .admin-contact-row:nth-child(odd) {
-  background-color: #e9ecef;
+  background-color: var(--bs-gray-100);
 }
 
 .admin-img-add {

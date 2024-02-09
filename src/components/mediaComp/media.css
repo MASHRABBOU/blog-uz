@@ -21,7 +21,7 @@
 }
 .media-btn {
   background-color: #1e1e1e;
-  color: #fff;
+  color: var(--bs-white);
   font-size: 14px;
   font-weight: 600;
   text-transform: none;
@@ -39,7 +39,7 @@
   margin-right: auto;
 }
 .media-btn:hover {
-  background-color: #ffffff;
+  background-color: var(--bs-white);
   color: #1e1e1e;
 }
 @media (max-width: 870px) {
