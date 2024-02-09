@@ -21,7 +21,7 @@ export const Hero = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           spaceBetween={50}
           navigation
-          autoplay={{
+          Autoplay={{
             delay: 10000,
             disableOnInteraction: false,
           }}
