@@ -4,13 +4,20 @@ import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaClosedCaptioning } from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AdminNavbar = () => {
 
   const [modal, setModal] = useState(false)
+  const navigate = useNavigate()
 
   const handleModal = () => {
     setModal((item) => !item)
+  }
+
+  const logOut = () => {
+    sessionStorage.removeItem("admin")
+    navigate('/')
   }
 
   return (
@@ -47,7 +54,7 @@ export const AdminNavbar = () => {
                 </li>
               </ul>
             </nav>
-            <button className="admin-navbar-btn">Chiqish</button>
+            <button className="admin-navbar-btn" onClick={logOut}>Chiqish</button>
           </div>
           <GiHamburgerMenu className="admin-navbar-hamburger"  onClick={handleModal}/>
         </div>
