@@ -12,6 +12,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { MdCloudUpload } from "react-icons/md";
 import { useState, useEffect } from "react";
+import { FaEdit } from "react-icons/fa";
 
 export const AdminImg = () => {
   const [img, setImg] = useState(null);
@@ -130,6 +131,9 @@ export const AdminImg = () => {
                 <TableCell className="admin-img-header" align="right">
                   Rasm
                 </TableCell>
+                <TableCell className="admin-home-header" align="right">
+                  Yangilash
+                </TableCell>
                 <TableCell className="admin-img-header" align="right">
                   O'chirish
                 </TableCell>
@@ -145,6 +149,9 @@ export const AdminImg = () => {
                   >
                     <TableCell className="admin-img-body" align="right">
                       <img src={item.img} alt="img" className="admin-img-photo" width={50} height={50} />
+                    </TableCell>
+                    <TableCell className="admin-img-body" align="right">
+                      <FaEdit className="admin-img-delete"/>
                     </TableCell>
                     <TableCell className="admin-img-body" align="right">
                       <RiDeleteBin6Fill className="admin-img-delete" onClick={() => imgDelete(item.id)}/>

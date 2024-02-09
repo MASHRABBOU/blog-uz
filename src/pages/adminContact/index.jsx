@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import "./adminContact.css";
+import { FaEdit } from "react-icons/fa";
 
 export const AdminContact = () => {
   const [contact, setContact] = useState([]);
@@ -65,6 +66,9 @@ export const AdminContact = () => {
                     Xabar
                   </TableCell>
                   <TableCell className="admin-contact-header" align="right">
+                    Yangilash
+                  </TableCell>
+                  <TableCell className="admin-contact-header" align="right">
                     O'chirish
                   </TableCell>
                 </TableRow>
@@ -94,6 +98,9 @@ export const AdminContact = () => {
                       </TableCell>
                       <TableCell className="admin-contact-body" align="right">
                         {item.message}
+                      </TableCell>
+                      <TableCell className="admin-contact-body" align="right">
+                        <FaEdit className="admin-contact-delete"/>
                       </TableCell>
                       <TableCell className="admin-contact-body" align="right">
                         <RiDeleteBin6Fill className="admin-contact-delete" onClick={() => handleDelete(item.id)}/>

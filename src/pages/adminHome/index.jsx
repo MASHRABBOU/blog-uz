@@ -12,6 +12,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { MdCloudUpload } from "react-icons/md";
 import { AdminNews } from "../../components/addNews";
+import { FaEdit } from "react-icons/fa";
 
 export const AdminHome = () => {
   const [img, setImg] = useState(null);
@@ -40,7 +41,7 @@ export const AdminHome = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              token: sessionStorage.getItem("admin")
+              token: sessionStorage.getItem("admin"),
             },
             body: JSON.stringify({
               img: data.url,
@@ -75,7 +76,7 @@ export const AdminHome = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: sessionStorage.getItem("admin")
+        token: sessionStorage.getItem("admin"),
       },
     })
       .then((res) => res.json())
@@ -107,7 +108,7 @@ export const AdminHome = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: sessionStorage.getItem("admin")
+        token: sessionStorage.getItem("admin"),
       },
     })
       .then((res) => res.json())
@@ -162,6 +163,9 @@ export const AdminHome = () => {
                   Rasm
                 </TableCell>
                 <TableCell className="admin-home-header" align="right">
+                  Yangilash
+                </TableCell>
+                <TableCell className="admin-home-header" align="right">
                   O'chirish
                 </TableCell>
               </TableRow>
@@ -182,6 +186,9 @@ export const AdminHome = () => {
                         width={60}
                         height={60}
                       />
+                    </TableCell>
+                    <TableCell className="admin-home-body" align="right">
+                      <FaEdit className="admin-home-delete" />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
                       <RiDeleteBin6Fill
@@ -208,6 +215,9 @@ export const AdminHome = () => {
                 </TableCell>
                 <TableCell className="admin-home-header" align="right">
                   Matn
+                </TableCell>
+                <TableCell className="admin-home-header" align="right">
+                  Yangilash
                 </TableCell>
                 <TableCell className="admin-home-header" align="right">
                   O'chirish
@@ -240,6 +250,9 @@ export const AdminHome = () => {
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
                       {item.text}
+                    </TableCell>
+                    <TableCell className="admin-home-body" align="right">
+                      <FaEdit className="admin-home-delete" />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
                       <RiDeleteBin6Fill
