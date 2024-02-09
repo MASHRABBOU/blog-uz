@@ -226,7 +226,12 @@ export const AdminHome = () => {
                       />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
-                      <BasePopup id={id} open={open} anchor={anchor} className="admin-home-add-box">
+                      <BasePopup
+                        id={id}
+                        open={open}
+                        anchor={anchor}
+                        className="admin-home-add-box"
+                      >
                         <PopupBody>
                           <Button
                             component="label"
