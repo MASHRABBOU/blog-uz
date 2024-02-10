@@ -24,12 +24,18 @@ export const AdminHome = () => {
 
   ///////////////// modal
   const [anchor, setAnchor] = useState(null);
+  const [anchorSecond, setAnchorSecond] = useState(null);
 
   const handleClick = (event) => {
     setAnchor(anchor ? null : event.currentTarget);
   };
+  const handleClickSecond = (event) => {
+    setAnchorSecond(anchorSecond ? null : event.currentTarget);
+  };
 
   const open = anchor;
+  const openSecond = anchorSecond
+  const ides = openSecond ? "simple-popper" : undefined;
   const id = open ? "simple-popper" : undefined;
 
   const grey = {
@@ -322,9 +328,9 @@ export const AdminHome = () => {
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
                       <BasePopup
-                        id={id}
-                        open={open}
-                        anchor={anchor}
+                        id={ides}
+                        open={openSecond}
+                        anchor={anchorSecond}
                         className="admin-home-add-box-bottom"
                       >
                         <PopupBody>
@@ -357,15 +363,15 @@ export const AdminHome = () => {
                           </button>
                           <FaWindowClose
                             className="admin-home-add-btn-close"
-                            aria-describedby={id}
-                            onClick={handleClick}
+                            aria-describedby={ides}
+                            onClick={handleClickSecond}
                           />
                         </PopupBody>
                       </BasePopup>
                       <FaEdit
                         className="admin-home-delete"
-                        aria-describedby={id}
-                        onClick={handleClick}
+                        aria-describedby={ides}
+                        onClick={handleClickSecond}
                       />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
