@@ -75,12 +75,19 @@
 .admin-home-add-box {
   position: relative;
 }
+
 .admin-home-add-btn-close {
   position: absolute;
   right: 20px;
   top: 20px;
   font-size: 20px;
   color: var(--bs-cyan);
+}
+
+.admin-home-add-box-bottom {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0;
 }
 
 @media (max-width: 800px) {

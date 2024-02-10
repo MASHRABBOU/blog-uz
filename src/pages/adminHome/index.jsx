@@ -15,6 +15,7 @@ import { AdminNews } from "../../components/addNews";
 import { FaEdit } from "react-icons/fa";
 import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
 import { FaWindowClose } from "react-icons/fa";
+import { TextField } from "@mui/material";
 
 export const AdminHome = () => {
   const [img, setImg] = useState(null);
@@ -320,7 +321,52 @@ export const AdminHome = () => {
                       {item.text}
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
-                      <FaEdit className="admin-home-delete" />
+                      <BasePopup
+                        id={id}
+                        open={open}
+                        anchor={anchor}
+                        className="admin-home-add-box-bottom"
+                      >
+                        <PopupBody>
+                          <div className="admin-news-wrapper">
+                            <TextField
+                              id="outlined-required"
+                              label="Mavzu"
+                              autoComplete="current-lined"
+                              variant="standard"
+                              className="admin-news-input"
+                            />
+                          </div>
+                          <textarea
+                            name="text"
+                            cols="30"
+                            rows="10"
+                            placeholder="matn..."
+                          ></textarea>
+                          <Button
+                            component="label"
+                            variant="contained"
+                            className="admin-home-add"
+                            startIcon={<MdCloudUpload />}
+                          >
+                            Upload file
+                            <VisuallyHiddenInput type="file" />
+                          </Button>
+                          <button className="admin-home-add-btn">
+                            qo'shish
+                          </button>
+                          <FaWindowClose
+                            className="admin-home-add-btn-close"
+                            aria-describedby={id}
+                            onClick={handleClick}
+                          />
+                        </PopupBody>
+                      </BasePopup>
+                      <FaEdit
+                        className="admin-home-delete"
+                        aria-describedby={id}
+                        onClick={handleClick}
+                      />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
                       <RiDeleteBin6Fill
