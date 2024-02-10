@@ -13,10 +13,49 @@ import Button from "@mui/material/Button";
 import { MdCloudUpload } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
+import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
+import { FaWindowClose } from "react-icons/fa";
+import { TextField } from "@mui/material";
 
 export const AdminImg = () => {
   const [img, setImg] = useState(null);
   const [post, setPost] = useState([]);
+
+    ///////////////// modal
+    const [anchorSecond, setAnchorSecond] = useState(null);
+  
+    const handleClickSecond = (event) => {
+      setAnchorSecond(anchorSecond ? null : event.currentTarget);
+    };
+  
+    const openSecond = anchorSecond
+    const ides = openSecond ? "simple-popper" : undefined;
+  
+    const grey = {
+      200: "#DAE2ED",
+      700: "#434D5B",
+      900: "#1C2025",
+    };
+  
+    const PopupBody = styled("div")(
+      ({ theme }) => `
+      width: 50vw;
+      padding: 22px 36px;
+      margin: 8px;
+      border-radius: 8px;
+      border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+      background-color: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+      box-shadow: ${
+        theme.palette.mode === "dark"
+          ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+          : `0px 4px 8px rgb(0 0 0 / 0.1)`
+      };
+      font-size: 0.875rem;
+      z-index: 1;
+    `
+    );
+  
+    /////////////////////// modal
 
   const handleImg = (e) => {
     setImg(e.target.files[0]);
@@ -40,7 +79,7 @@ export const AdminImg = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              token: sessionStorage.getItem("admin")
+              token: sessionStorage.getItem("admin"),
             },
             body: JSON.stringify({
               img: data.url,
@@ -77,7 +116,7 @@ export const AdminImg = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: sessionStorage.getItem("admin")
+        token: sessionStorage.getItem("admin"),
       },
     })
       .then((res) => res.json())
@@ -148,13 +187,52 @@ export const AdminImg = () => {
                     className="admin-contact-row"
                   >
                     <TableCell className="admin-img-body" align="right">
-                      <img src={item.img} alt="img" className="admin-img-photo" width={50} height={50} />
+                      <img
+                        src={item.img}
+                        alt="img"
+                        className="admin-img-photo"
+                        width={50}
+                        height={50}
+                      />
+                    </TableCell>
+                    <TableCell className="admin-home-body" align="right">
+                      <BasePopup
+                        id={ides}
+                        open={openSecond}
+                        anchor={anchorSecond}
+                        className="admin-home-add-box-bottom"
+                      >
+                        <PopupBody>
+                          <Button
+                            component="label"
+                            variant="contained"
+                            className="admin-home-add"
+                            startIcon={<MdCloudUpload />}
+                          >
+                            Upload file
+                            <VisuallyHiddenInput type="file" />
+                          </Button>
+                          <button className="admin-home-add-btn">
+                            qo'shish
+                          </button>
+                          <FaWindowClose
+                            className="admin-home-add-btn-close"
+                            aria-describedby={ides}
+                            onClick={handleClickSecond}
+                          />
+                        </PopupBody>
+                      </BasePopup>
+                      <FaEdit
+                        className="admin-home-delete"
+                        aria-describedby={ides}
+                        onClick={handleClickSecond}
+                      />
                     </TableCell>
                     <TableCell className="admin-img-body" align="right">
-                      <FaEdit className="admin-img-delete"/>
-                    </TableCell>
-                    <TableCell className="admin-img-body" align="right">
-                      <RiDeleteBin6Fill className="admin-img-delete" onClick={() => imgDelete(item.id)}/>
+                      <RiDeleteBin6Fill
+                        className="admin-img-delete"
+                        onClick={() => imgDelete(item.id)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
