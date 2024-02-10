@@ -30,7 +30,7 @@ textarea {
   padding: 10px 30px;
   border-radius: 10px;
   background-color: var(--bs-cyan);
-  color: ;
+  color: #fff;
   border: var(--bs-cyan);
   font-weight: 400;
   cursor: pointer;

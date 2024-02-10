@@ -18,24 +18,24 @@ import { MdCloudUpload } from "react-icons/md";
 export const AdminContact = () => {
   const [contact, setContact] = useState([]);
 
-///////////////// modal
-const [anchorSecond, setAnchorSecond] = useState(null);
+  ///////////////// modal
+  const [anchorSecond, setAnchorSecond] = useState(null);
 
-const handleClickSecond = (event) => {
-  setAnchorSecond(anchorSecond ? null : event.currentTarget);
-};
+  const handleClickSecond = (event) => {
+    setAnchorSecond(anchorSecond ? null : event.currentTarget);
+  };
 
-const openSecond = anchorSecond
-const ides = openSecond ? "simple-popper" : undefined;
+  const openSecond = anchorSecond;
+  const ides = openSecond ? "simple-popper" : undefined;
 
-const grey = {
-  200: "#DAE2ED",
-  700: "#434D5B",
-  900: "#1C2025",
-};
+  const grey = {
+    200: "#DAE2ED",
+    700: "#434D5B",
+    900: "#1C2025",
+  };
 
-const PopupBody = styled("div")(
-  ({ theme }) => `
+  const PopupBody = styled("div")(
+    ({ theme }) => `
   width: 50vw;
   padding: 22px 36px;
   margin: 8px;
@@ -50,9 +50,9 @@ const PopupBody = styled("div")(
   font-size: 0.875rem;
   z-index: 1;
 `
-);
+  );
 
-/////////////////////// modal
+  /////////////////////// modal
 
   useEffect(() => {
     fetch(import.meta.env.VITE_APP_BASE_URL + `/contact`)
