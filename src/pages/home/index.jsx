@@ -42,9 +42,9 @@ export const Home = () => {
 
   return (
     <Layouts>
-      {location.loaded
+      {/* {location.loaded
         ? JSON.stringify(location.coordinates)
-        : "Location data not aviable yet!"}
+        : "Location data not aviable yet!"} */}
       <Hero />
       <News />
     </Layouts>
