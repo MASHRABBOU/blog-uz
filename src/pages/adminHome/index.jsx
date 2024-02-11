@@ -12,58 +12,14 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { MdCloudUpload } from "react-icons/md";
 import { AdminNews } from "../../components/addNews";
-import { FaEdit } from "react-icons/fa";
-import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
-import { FaWindowClose } from "react-icons/fa";
-import { TextField } from "@mui/material";
 
 export const AdminHome = () => {
   const [img, setImg] = useState(null);
   const [slideList, setSlideList] = useState([]);
   const [post, setPost] = useState([]);
 
-  ///////////////// modal
-  const [anchor, setAnchor] = useState(null);
-  const [anchorSecond, setAnchorSecond] = useState(null);
 
-  const handleClick = (event) => {
-    setAnchor(anchor ? null : event.currentTarget);
-  };
-  const handleClickSecond = (event) => {
-    setAnchorSecond(anchorSecond ? null : event.currentTarget);
-  };
-
-  const open = anchor;
-  const openSecond = anchorSecond
-  const ides = openSecond ? "simple-popper" : undefined;
-  const id = open ? "simple-popper" : undefined;
-
-  const grey = {
-    200: "#DAE2ED",
-    700: "#434D5B",
-    900: "#1C2025",
-  };
-
-  const PopupBody = styled("div")(
-    ({ theme }) => `
-    width: 50vw;
-    padding: 22px 36px;
-    margin: 8px;
-    border-radius: 8px;
-    border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-    background-color: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-    box-shadow: ${
-      theme.palette.mode === "dark"
-        ? `0px 4px 8px rgb(0 0 0 / 0.7)`
-        : `0px 4px 8px rgb(0 0 0 / 0.1)`
-    };
-    font-size: 0.875rem;
-    z-index: 1;
-  `
-  );
-
-  /////////////////////// modal
-
+  /////////////////////// create slide
   const handleImg = (e) => {
     setImg(e.target.files[0]);
   };
@@ -104,6 +60,8 @@ export const AdminHome = () => {
       });
   };
 
+  //////////////////////////////// get slide
+
   useEffect(() => {
     fetch(import.meta.env.VITE_APP_BASE_URL + `/slide`, {
       method: "GET",
@@ -115,6 +73,8 @@ export const AdminHome = () => {
       .then((data) => setSlideList(data))
       .catch((error) => console.log(error));
   }, []);
+
+  ///////////////////////// delete slide
 
   const handleDelete = (e) => {
     fetch(import.meta.env.VITE_APP_BASE_URL + "/delete_slide/" + e, {
@@ -134,6 +94,8 @@ export const AdminHome = () => {
       .catch((error) => console.log(error));
   };
 
+  ///////////////////////// get posts
+
   useEffect(() => {
     fetch(import.meta.env.VITE_APP_BASE_URL + `/posts?page=1&limit=1000`, {
       method: "GET",
@@ -148,6 +110,7 @@ export const AdminHome = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  //////////////////////////////////////// delete post
   const postDelete = (e) => {
     fetch(import.meta.env.VITE_APP_BASE_URL + "/delete_post/" + e, {
       method: "DELETE",
@@ -165,6 +128,7 @@ export const AdminHome = () => {
       })
       .catch((error) => console.log(error));
   };
+
 
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -208,9 +172,6 @@ export const AdminHome = () => {
                   Rasm
                 </TableCell>
                 <TableCell className="admin-home-header" align="right">
-                  Yangilash
-                </TableCell>
-                <TableCell className="admin-home-header" align="right">
                   O'chirish
                 </TableCell>
               </TableRow>
@@ -230,39 +191,6 @@ export const AdminHome = () => {
                         className="slide-img"
                         width={60}
                         height={60}
-                      />
-                    </TableCell>
-                    <TableCell className="admin-home-body" align="right">
-                      <BasePopup
-                        id={id}
-                        open={open}
-                        anchor={anchor}
-                        className="admin-home-add-box"
-                      >
-                        <PopupBody>
-                          <Button
-                            component="label"
-                            variant="contained"
-                            className="admin-home-add"
-                            startIcon={<MdCloudUpload />}
-                          >
-                            Upload file
-                            <VisuallyHiddenInput type="file" />
-                          </Button>
-                          <button className="admin-home-add-btn">
-                            qo'shish
-                          </button>
-                          <FaWindowClose
-                            className="admin-home-add-btn-close"
-                            aria-describedby={id}
-                            onClick={handleClick}
-                          />
-                        </PopupBody>
-                      </BasePopup>
-                      <FaEdit
-                        className="admin-home-delete"
-                        aria-describedby={id}
-                        onClick={handleClick}
                       />
                     </TableCell>
                     <TableCell className="admin-home-body" align="right">
@@ -290,9 +218,6 @@ export const AdminHome = () => {
                 </TableCell>
                 <TableCell className="admin-home-header" align="right">
                   Matn
-                </TableCell>
-                <TableCell className="admin-home-header" align="right">
-                  Yangilash
                 </TableCell>
                 <TableCell className="admin-home-header" align="right">
                   O'chirish
@@ -326,54 +251,7 @@ export const AdminHome = () => {
                     <TableCell className="admin-home-body" align="right">
                       {item.text}
                     </TableCell>
-                    <TableCell className="admin-home-body" align="right">
-                      <BasePopup
-                        id={ides}
-                        open={openSecond}
-                        anchor={anchorSecond}
-                        className="admin-home-add-box-bottom"
-                      >
-                        <PopupBody>
-                          <div className="admin-news-wrapper">
-                            <TextField
-                              id="outlined-required"
-                              label="Mavzu"
-                              autoComplete="current-lined"
-                              variant="standard"
-                              className="admin-news-input"
-                            />
-                          </div>
-                          <textarea
-                            name="text"
-                            cols="30"
-                            rows="10"
-                            placeholder="matn..."
-                          ></textarea>
-                          <Button
-                            component="label"
-                            variant="contained"
-                            className="admin-home-add"
-                            startIcon={<MdCloudUpload />}
-                          >
-                            Upload file
-                            <VisuallyHiddenInput type="file" />
-                          </Button>
-                          <button className="admin-home-add-btn">
-                            qo'shish
-                          </button>
-                          <FaWindowClose
-                            className="admin-home-add-btn-close"
-                            aria-describedby={ides}
-                            onClick={handleClickSecond}
-                          />
-                        </PopupBody>
-                      </BasePopup>
-                      <FaEdit
-                        className="admin-home-delete"
-                        aria-describedby={ides}
-                        onClick={handleClickSecond}
-                      />
-                    </TableCell>
+                   
                     <TableCell className="admin-home-body" align="right">
                       <RiDeleteBin6Fill
                         className="admin-home-delete"
