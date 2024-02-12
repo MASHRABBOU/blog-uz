@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import { MdCloudUpload } from "react-icons/md";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AdminNews = () => {
   const [img, setImg] = React.useState(null);
@@ -44,9 +46,20 @@ export const AdminNews = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data?.message === "created post") {
+               setTimeout(()=> {
                 location.reload();
+               },2500)
               }
-              alert(data?.message);
+              toast.info(data.message, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
             })
             .catch((error) => console.log(error));
         }
@@ -66,6 +79,7 @@ export const AdminNews = () => {
   });
   return (
     <div className="admin-news">
+       <ToastContainer />
       <div className="container">
         <div className="admin-news-inner">
           <h2 className="admin-news-title">Yangilik qo'shish</h2>

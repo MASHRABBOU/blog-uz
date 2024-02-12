@@ -145,9 +145,20 @@ export const AdminHome = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.msg === "deleted post!") {
-          location.reload();
+          setTimeout(() => {
+            location.reload()
+          },2500)
         }
-        alert(data.msg);
+        toast.info(data.msg, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       })
       .catch((error) => console.log(error));
   };
