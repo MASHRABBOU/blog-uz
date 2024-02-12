@@ -12,12 +12,13 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { MdCloudUpload } from "react-icons/md";
 import { AdminNews } from "../../components/addNews";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AdminHome = () => {
   const [img, setImg] = useState(null);
   const [slideList, setSlideList] = useState([]);
   const [post, setPost] = useState([]);
-
 
   /////////////////////// create slide
   const handleImg = (e) => {
@@ -51,9 +52,20 @@ export const AdminHome = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data?.message === "created slide") {
-                location.reload();
+                toast.info(data?.message, {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+                setTimeout(() => {
+                  location.reload();
+                }, 2500);
               }
-              alert(data?.message);
             })
             .catch((error) => console.log(error));
         }
@@ -87,9 +99,20 @@ export const AdminHome = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.msg === "deleted slide!") {
-          location.reload();
+          setTimeout(() => {
+            location.reload();
+          }, 2500);
         }
-        alert(data.msg);
+        toast.info(data.msg, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       })
       .catch((error) => console.log(error));
   };
@@ -129,7 +152,6 @@ export const AdminHome = () => {
       .catch((error) => console.log(error));
   };
 
-
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -145,6 +167,7 @@ export const AdminHome = () => {
   return (
     <div className="admin-home">
       <div className="container">
+        <ToastContainer />
         <div className="admin-home-inner">
           <h2 className="admin-home-title">Slider qo'shish</h2>
           <div className="admin-home-box">
@@ -251,7 +274,7 @@ export const AdminHome = () => {
                     <TableCell className="admin-home-body" align="right">
                       {item.text}
                     </TableCell>
-                   
+
                     <TableCell className="admin-home-body" align="right">
                       <RiDeleteBin6Fill
                         className="admin-home-delete"
