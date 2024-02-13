@@ -14,6 +14,8 @@ import { FaWindowClose } from "react-icons/fa";
 import { Button, TextField } from "@mui/material";
 import styled from "@emotion/styled";
 import { MdCloudUpload } from "react-icons/md";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AdminContact = () => {
   const [contact, setContact] = useState([]);
@@ -74,9 +76,20 @@ export const AdminContact = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.msg === "deleted contact!") {
-          location.reload();
+          setTimeout(() => {
+            location.reload();
+          }, 2500);
         }
-        alert(data.msg);
+        toast.info(data.msg, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       })
       .catch((error) => console.log(error));
   };
@@ -95,6 +108,7 @@ export const AdminContact = () => {
 
   return (
     <div className="admin-contact">
+        <ToastContainer />
       <div className="container">
         <div className="admin-contac-inner">
           <h2 className="admin-contact-title">Murojatlar</h2>
