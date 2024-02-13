@@ -15,6 +15,8 @@ import { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
 import { FaWindowClose } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AdminImg = () => {
   const [img, setImg] = useState(null);
@@ -86,10 +88,21 @@ export const AdminImg = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              if (data?.message === "created img") {
-                location.reload();
+              if (data.msg === "created img!") {
+                setTimeout(() => {
+                  location.reload();
+                }, 2500);
               }
-              alert(data?.message);
+              toast.info(data.msg, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
             })
             .catch((error) => console.log(error));
         }
@@ -121,9 +134,20 @@ export const AdminImg = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.msg === "deleted img!") {
-          location.reload();
+          setTimeout(() => {
+            location.reload();
+          }, 2500);
         }
-        alert(data.msg);
+        toast.info(data.msg, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       })
       .catch((error) => console.log(error));
   };
@@ -142,6 +166,7 @@ export const AdminImg = () => {
 
   return (
     <div className="admin-img">
+        <ToastContainer />
       <div className="container">
         <div className="admin-img-inner">
           <h2 className="admin-img-title">Rasm qo'shish</h2>
